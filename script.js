@@ -15,123 +15,109 @@
       });
   });
 
-  document.getElementById("getPosts").addEventListener("click", function () {
-    // Wyświetl tekst "Loading..." podczas pobierania
-    document.getElementById("answer").innerHTML = "Loading...";
+  function showLoading() {
+    document.getElementById("loadingModal").style.display = 'block';
+  }
+  
+  function hideLoading() {
+    // Simulate loading time by adding a delay (e.g., 3 seconds)
+    setTimeout(() => {
+      document.getElementById("loadingModal").style.display = 'none';
+    }, 1000); // 3000 milliseconds = 3 seconds
+  }
+  
 
-    // Pobranie wszystkich postów metodą GET
+  document.getElementById("getPosts").addEventListener("click", function () {
+    showLoading(); // Pokaż okno "Loading..."
+  
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((posts) => {
-        // Wyczyść zawartość po zakończeniu ładowania
-        document.getElementById("answer").innerHTML = "";
-
+        hideLoading(); // Ukryj okno "Loading..."
+        document.getElementById("answer").innerHTML = '';
         console.log(posts);
-
-        // Iteracja po każdym poście
+  
         posts.forEach((post) => {
-          // Tworzenie elementów HTML dla tytułu i treści posta
           const postContainer = document.createElement("div");
           postContainer.classList.add("post");
-
+  
           const title = document.createElement("h3");
           title.textContent = post.title;
-
+  
           const body = document.createElement("p");
           body.textContent = post.body;
-
-          // Dodanie tytułu i treści do kontenera
+  
           postContainer.appendChild(title);
           postContainer.appendChild(body);
-
-          // Dodanie kontenera do głównego elementu "answer"
+  
           document.getElementById("answer").appendChild(postContainer);
         });
       })
       .catch((error) => {
-        document.getElementById("answer").innerHTML =
-          "Error loading posts. Please try again later.";
+        hideLoading(); // Ukryj okno w przypadku błędu
+        document.getElementById("answer").innerHTML = 'Error loading posts. Please try again later.';
         console.error("Error fetching posts:", error);
       });
   });
+  
 
-  document
-    .getElementById("getSinglePost")
-    .addEventListener("click", function () {
-      // Wyświetl tekst "Loading..." podczas pobierania
-      document.getElementById("answer").innerHTML = "Loading...";
-
-      // Pobranie pojedynczego posta o ID 1 metodą GET
-      fetch("https://jsonplaceholder.typicode.com/posts/1")
-        .then((response) => response.json())
-        .then((post) => {
-          // Wyczyść zawartość po zakończeniu ładowania
-          document.getElementById("answer").innerHTML = "";
-
-          console.log(post);
-
-          // Tworzenie elementów HTML dla tytułu i treści posta
-          const postContainer = document.createElement("div");
-          postContainer.classList.add("post");
-
-          const title = document.createElement("h3");
-          title.textContent = post.title;
-
-          const body = document.createElement("p");
-          body.textContent = post.body;
-
-          // Dodanie tytułu i treści do kontenera
-          postContainer.appendChild(title);
-          postContainer.appendChild(body);
-
-          // Dodanie kontenera do głównego elementu "answer"
-          document.getElementById("answer").appendChild(postContainer);
-        })
-        .catch((error) => {
-          document.getElementById("answer").innerHTML =
-            "Error loading post. Please try again later.";
-          console.error("Error fetching post:", error);
-        });
-    });
+  document.getElementById("getSinglePost").addEventListener("click", function () {
+    showLoading(); // Pokaż okno "Loading..."
+  
+    fetch("https://jsonplaceholder.typicode.com/posts/1")
+      .then((response) => response.json())
+      .then((post) => {
+        hideLoading(); // Ukryj okno "Loading..."
+        document.getElementById("answer").innerHTML = '';
+        console.log(post);
+  
+        const postContainer = document.createElement("div");
+        postContainer.classList.add("post");
+  
+        const title = document.createElement("h3");
+        title.textContent = post.title;
+  
+        const body = document.createElement("p");
+        body.textContent = post.body;
+  
+        postContainer.appendChild(title);
+        postContainer.appendChild(body);
+  
+        document.getElementById("answer").appendChild(postContainer);
+      })
+      .catch((error) => {
+        hideLoading(); // Ukryj okno w przypadku błędu
+        document.getElementById("answer").innerHTML = 'Error loading post. Please try again later.';
+        console.error("Error fetching post:", error);
+      });
+  });
+  
 
   document.getElementById("createPost").addEventListener("click", function () {
-    // Wyświetl tekst "Processing..." podczas wysyłania
-    document.getElementById("answer").innerHTML = "Processing...";
-
-    // Dane nowego posta
+    showLoading(); // Pokaż okno "Loading..."
+  
     const newPost = {
-      title: "Nowy post",
-      body: "To jest treść nowego postu",
-      userId: 1,
+      title: 'Nowy post',
+      body: 'To jest treść nowego postu',
+      userId: 1
     };
-
-    // Wysłanie nowego posta metodą POST
+  
     fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json; charset=UTF-8",
+        'Content-Type': 'application/json; charset=UTF-8',
       },
       body: JSON.stringify(newPost),
     })
       .then((response) => response.json())
       .then((data) => {
-        // Po zakończeniu, wyświetl komunikat z ID nowego posta
-        document.getElementById("answer").innerHTML =
-          `Dodano nowy post o ID = ${data.id}`;
+        hideLoading(); // Ukryj okno "Loading..."
+        document.getElementById("answer").innerHTML = `Dodano nowy post o ID = ${data.id}`;
         console.log(data);
       })
       .catch((error) => {
-        document.getElementById("answer").innerHTML =
-          "Wystąpił błąd podczas dodawania posta. Spróbuj ponownie później.";
+        hideLoading(); // Ukryj okno w przypadku błędu
+        document.getElementById("answer").innerHTML = 'Wystąpił błąd podczas dodawania posta. Spróbuj ponownie później.';
         console.error("Error creating post:", error);
       });
-  });
-
-  cw2.addEventListener("click", function () {
-    //TODO
-  });
-
-  cw3.addEventListener("click", function () {
-    //TODO
-  });
-})();
+  })}());
