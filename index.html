@@ -4,23 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="style.css" />
-    <title>repl.it</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <title>PAW Lab 2, YY</title>
   </head>
   <body>
-    <div id="loadingModal" class="modal">
-      <div class="modal-content">
-        <p>Loading...</p>
+    <div class="area">
+      <h1 style="text-align: center" class="headerH1">PAW Laboratorium 2</h1>
+      <div id="loadingModal" class="modal">
+        <div class="modal-content">
+          <p>Loading...</p>
+        </div>
       </div>
+      <div class="button-container">
+        <button id="example">example</button>
+      </div>
+      <div class="button-container">
+        <button id="getPosts">cw1 - Pobierz wszystkie posty</button>
+        <button id="getSinglePost">cw1 - Pobierz pojedynczy post</button>
+        <button id="createPost">cw1 - Utwórz nowy post</button>
+      </div>
+      <div class="button-container">
+        <button id="cw2" disabled>cw2 - wszystkie zmiany drugiego ćwiczenia są zrealizowane w pierwszym ćwiczeniu</button>
+      </div>
+      <div class="button-container">
+        <button id="getMyPosts">cw3 - Pobierz wszystkie posty z osobistej strony GitHub</button>
+      </div>
+      <div id="answer"></div>
+      <script src="script.js"></script>
     </div>
-    <div>
-      <button id="example">example</button><br />
-      <button id="getPosts">cw1 - Pobierz wszystkie posty</button>
-      <button id="getSinglePost">cw1 - Pobierz pojedynczy post</button>
-      <button id="createPost">cw1 - Utwórz nowy post</button><br />
-      <button id="cw2">cw2</button><br />
-      <button id="cw3">cw3</button>
-    </div>
-    <div id="answer"></div>
-    <script src="script.js"></script>
+    <p style="text-align: left; margin: 20px;">Wykonane przez: Yan Yazh</p>
   </body>
 </html>

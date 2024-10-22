@@ -3,17 +3,52 @@ html {
   width: 100%;
 }
 
+body{
+  background-color:#191919;
+  max-width: 1000px; /* Limit the width to 800px, adjust as needed */
+  margin: 0 auto;
+}
+
+.area{
+  background-color: #242424;
+  padding-bottom: 0.5cm;
+  margin: 0.5cm;
+  border-radius: 5px;
+  
+}
+
+p{
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: white;
+}
+
+h1{
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.headerH1{
+  padding: 25px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #26445F;
+}
+
 #answer {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  color: #333;
+  color: white;
+  margin: 15px;
 }
 
 .post {
-  border: 1px solid #ddd;
+  border: 1px solid #282828;
   padding: 10px;
-  margin: 10px;
-  background-color: #f9f9f9;
+  margin-top: 15px;
+  background-color: #222222;
+  border-radius: 5px;
+  color: white;
 }
 
 .post h3 {
@@ -26,7 +61,8 @@ html {
 }
 
 button{
-  background-color: #4CAF50;
+  background-color: #26445F;
+  transition: background-color 0.5s;
   border: none;
   color: white;
   padding: 5px 10px;
@@ -34,9 +70,40 @@ button{
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
-  margin: 4px 2px;
+  margin: 5px 2px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
+  transition: box-shadow 0.3s ease;
+}
+
+button:hover{
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  background-color: #1f374d
+}
+
+button:disabled{
+  background-color: #2C2C2C;
+  color: #999A99;
+  cursor: not-allowed;
+}
+
+
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap to new lines if necessary */
+  justify-content: space-between; /* Distribute buttons evenly with space between */
+  gap: 10px; /* Optional: Add some spacing between buttons */
+  padding: 10px;
+}
+
+/* Make buttons take equal width */
+.button-container button {
+  flex: 1; /* Make all buttons grow equally */
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  white-space: nowrap; /* Prevent text from wrapping inside buttons */
 }
 
 .modal {
@@ -56,7 +123,7 @@ button{
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: white;
+  background-color: #242424;
   border-radius: 5px;
   text-align: center;
   font-size: 18px;

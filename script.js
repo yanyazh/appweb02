@@ -23,7 +23,7 @@
     // Simulate loading time by adding a delay (e.g., 3 seconds)
     setTimeout(() => {
       document.getElementById("loadingModal").style.display = 'none';
-    }, 1000); // 3000 milliseconds = 3 seconds
+    }, 500); // 3000 milliseconds = 3 seconds
   }
   
 
@@ -120,4 +120,43 @@
         document.getElementById("answer").innerHTML = 'Wystąpił błąd podczas dodawania posta. Spróbuj ponownie później.';
         console.error("Error creating post:", error);
       });
-  })}());
+  })
+
+  document.getElementById("getMyPosts").addEventListener("click", function () {
+    showLoading(); // Pokaż okno "Loading..."
+  
+    fetch("https://my-json-server.typicode.com/yanyazh/appweb02/posts")
+      .then((response) => response.json())
+      .then((posts) => {
+        hideLoading(); // Ukryj okno "Loading..."
+        document.getElementById("answer").innerHTML = '';
+        console.log(posts);
+  
+        posts.forEach((post) => {
+          const postContainer = document.createElement("div");
+          postContainer.classList.add("post");
+  
+          const title = document.createElement("h3");
+          title.textContent = post.title;
+  
+          const body = document.createElement("p");
+          body.textContent = post.body;
+  
+          postContainer.appendChild(title);
+          postContainer.appendChild(body);
+  
+          document.getElementById("answer").appendChild(postContainer);
+        });
+      })
+      .catch((error) => {
+        hideLoading(); // Ukryj okno w przypadku błędu
+        document.getElementById("answer").innerHTML = 'Error loading posts. Please try again later.';
+        console.error("Error fetching posts:", error);
+      });
+  });
+
+
+
+}());
+
+  
